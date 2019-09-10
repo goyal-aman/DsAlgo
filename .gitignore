@@ -75,3 +75,4 @@
 .mypy_cache/3.7/os/path.meta.json
 .vscode/launch.json
 .vscode/settings.json
+.mypy_cache/
