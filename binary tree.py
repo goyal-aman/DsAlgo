@@ -31,13 +31,15 @@ class Node:
             else:
                 return "Not Found"
 
-    def traverse(self):
-        _list = []
-        if self.left.value != None:
-            self.left.traverse()
-        _list.append(self.value)
-        self.right.traverse()
-        return _list
+    def traverse(self, tree_elements=None):
+        if tree_elements is None:
+            tree_elements = []
+        if self.left != None:
+            self.left.traverse(tree_elements=tree_elements)
+        tree_elements.append(self.value)
+        if self.right != None:
+            self.right.traverse(tree_elements=tree_elements)
+        return tree_elements
 
 
 class BinaryTree:
@@ -57,18 +59,26 @@ class BinaryTree:
         else:
             return self.root.search(val)
 
-    # def travelsel(self):
-    #     if self.root == None:
-    #         return []
-    #     return self.root.traverse()
+    def traverse(self):
+        if self.root == None:
+            return "no data"
+        else:
+            return self.root.traverse()
 
 
-import random
+if __name__ == "__main__":
 
-tree = BinaryTree()
-for i in range(10):
-    t = random.randint(0, 100)
-    tree.addVlaue(t)
-    print(t)
-print(tree.search(3))
-print(tree.travelsel())
+    import random
+
+    tree = BinaryTree()
+    elements = []
+    for i in range(10):
+        j = random.randint(0, 100)
+        elements.append(j)
+        tree.addVlaue(j)
+
+    print(f"elements: {elements}")
+    print(f"sorted elements: {sorted(elements)}")
+
+    print("output from tree: ")
+    print("\n", tree.traverse())
